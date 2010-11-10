@@ -1,1 +1,55 @@
-%h1 Hello, World!
+%h1 Countdown!
+
+.timer{:style => "text-align: center"}
+  .num.hours 0
+  \:
+  .num.minutes 0
+  \:
+  .num.seconds 0
+  \:
+  .num.milli 0
+
+%br
+.startstop{:style => "display: inline-block; width: 100px; height: 100; background: #238; color: white; border-radius: 5px; margin: 10px; cursor: pointer;"} Start/Stop
+
+.reset{:style => "display: inline-block; width: 100px; height: 100;background: #238; color: white; border-radius: 5px; margin: 10px; cursor: pointer;"} Reset
+
+
+:javascript
+  var counting = false;
+  var time = 0 // time in ms
+  
+  $(document).ready(function(){
+    var departInterval = setInterval(updateTime, 10);
+    
+    $(".startstop").click(function(){
+      if (counting){
+        counting = false;
+        
+      }else{
+        counting = true;
+      }
+      return false;
+    });
+    $(".reset").click(function(){
+      counting = false;
+      time = 0;
+      $(".milli").text("0")
+      $(".seconds").text("0")
+      $(".minutes").text("0")
+      return false;
+    });
+  });
+  function updateTime(){
+    if (!counting) return false;
+    time += 10;
+    $(".milli").text((time/10)%100+"");
+    $(".seconds").text((parseInt(time/1000))%60+"");
+    $(".minutes").text((parseInt(time/(1000*60)))%60+"");
+    $(".minutes").text((parseInt(time/(1000*60*60)))%60+"");
+    
+    
+  }
+  
+  
+  
