@@ -8,16 +8,20 @@
   .num.seconds 0
   \:
   .num.milli 0
-
 %br
-.startstop{:style => "display: inline-block; width: 100px; height: 100; background: #238; color: white; border-radius: 5px; margin: 10px; cursor: pointer; border: 1px solid #111;"} Start
 
-.reset{:style => "display: inline-block; width: 100px; height: 100;background: #238; color: white; border-radius: 5px; margin: 10px; cursor: pointer; border: 1px solid #111;"} Reset
+.startstop.button Start
+.lap.button Lap
+.reset.button Reset
+
+%ul.laps
+%br
+
 
 
 :javascript
   var counting = false;
-  var time = 1000000; // time in ms
+  var time = 0; // time in ms
   
   $(document).ready(function(){
     var departInterval = setInterval(updateTime, 10);
@@ -36,6 +40,7 @@
     });
     $(".reset").click(function(){
       counting = false;
+      $(".laps").text("");
       time = 0;
       $(".milli").text("0")
       $(".seconds").text("0")
@@ -43,6 +48,9 @@
       $(".hours").text("0")
       
       return false;
+    });
+    $(".lap").click(function(){
+      $(".laps").prepend("<li>"+$(".timer").text()+"</li>");
     });
   });
   function updateTime(){
