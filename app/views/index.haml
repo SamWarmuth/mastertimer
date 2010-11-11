@@ -10,7 +10,7 @@
   .num.milli 0
 
 %br
-.startstop{:style => "display: inline-block; width: 100px; height: 100; background: #238; color: white; border-radius: 5px; margin: 10px; cursor: pointer;"} Start/Stop
+.startstop{:style => "display: inline-block; width: 100px; height: 100; background: #238; color: white; border-radius: 5px; margin: 10px; cursor: pointer;"} Start
 
 .reset{:style => "display: inline-block; width: 100px; height: 100;background: #238; color: white; border-radius: 5px; margin: 10px; cursor: pointer;"} Reset
 
@@ -25,9 +25,12 @@
     $(".startstop").click(function(){
       if (counting){
         counting = false;
+        $(".startstop").text("Start");
         
       }else{
         counting = true;
+        $(".startstop").text("Stop");
+        
       }
       return false;
     });
