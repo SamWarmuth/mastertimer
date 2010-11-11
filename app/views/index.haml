@@ -40,6 +40,8 @@
       $(".milli").text("0")
       $(".seconds").text("0")
       $(".minutes").text("0")
+      $(".hours").text("0")
+      
       return false;
     });
   });
@@ -49,7 +51,7 @@
     $(".milli").text((time/10)%100+"");
     $(".seconds").text((parseInt(time/1000))%60+"");
     $(".minutes").text((parseInt(time/(1000*60)))%60+"");
-    $(".minutes").text((parseInt(time/(1000*60*60)))%60+"");
+    $(".hours").text((parseInt(time/(1000*60*60)))%60+"");
     
     
   }
