@@ -11,7 +11,7 @@
 %br
 
 .startstop.button Start
-.lap.button Lap
+.lap.button.disabled Lap
 .reset.button Reset
 
 %ul.laps
@@ -30,10 +30,14 @@
       if (counting){
         counting = false;
         $(".startstop").text("Start");
+        $(".lap").addClass("disabled");
+        
         
       }else{
         counting = true;
         $(".startstop").text("Stop");
+        $(".lap").removeClass("disabled");
+        
         
       }
       return false;
@@ -47,10 +51,12 @@
       $(".seconds").text("0")
       $(".minutes").text("0")
       $(".hours").text("0")
+      $(".lap").addClass("disabled");
       
       return false;
     });
     $(".lap").click(function(){
+      if ($(".lap").hasClass("disabled")) return false;
       $(".laps").prepend("<li>"+$(".timer").text()+"</li>");
     });
   });
